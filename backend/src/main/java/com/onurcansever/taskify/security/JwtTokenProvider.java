@@ -26,12 +26,14 @@ public final class JwtTokenProvider {
     // Generate JWT Token
     public String generateToken(Authentication authentication) {
         String usernameOrEmail = authentication.getName();
+        Long id = ((CustomUserDetails) authentication.getPrincipal()).getUserId();
 
         Date currentDate = new Date();
         Date expireDate = new Date(currentDate.getTime() + jwtExpirationDate);
 
         // Create JWT Token
         String jwtToken = Jwts.builder()
+                .claim("userId", id)
                 .setSubject(usernameOrEmail)
                 .setIssuedAt(new Date())
                 .setExpiration(expireDate)
