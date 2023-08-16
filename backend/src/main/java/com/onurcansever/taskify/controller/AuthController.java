@@ -1,5 +1,6 @@
 package com.onurcansever.taskify.controller;
 
+import com.onurcansever.taskify.dto.JwtAuthResponse;
 import com.onurcansever.taskify.dto.LoginDto;
 import com.onurcansever.taskify.dto.RegisterDto;
 import com.onurcansever.taskify.service.AuthService;
@@ -13,18 +14,23 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/auth")
-public class AuthenticationController {
+public class AuthController {
 
     private final AuthService authService;
 
     @Autowired
-    public AuthenticationController(AuthService authService) {
+    public AuthController(AuthService authService) {
         this.authService = authService;
     }
 
     @PostMapping(value = "/login")
-    public ResponseEntity<String> login(@RequestBody  LoginDto loginDto) {
-        return new ResponseEntity<>(this.authService.login(loginDto), HttpStatus.CREATED);
+    public ResponseEntity<JwtAuthResponse> login(@RequestBody  LoginDto loginDto) {
+        String token = this.authService.login(loginDto);
+
+        JwtAuthResponse jwtAuthResponse = new JwtAuthResponse();
+        jwtAuthResponse.setAccessToken(token);
+
+        return new ResponseEntity<>(jwtAuthResponse, HttpStatus.CREATED);
     }
 
     @PostMapping(value = "/register")

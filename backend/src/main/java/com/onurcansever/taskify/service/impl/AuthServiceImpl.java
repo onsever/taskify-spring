@@ -4,6 +4,7 @@ import com.onurcansever.taskify.dto.LoginDto;
 import com.onurcansever.taskify.dto.RegisterDto;
 import com.onurcansever.taskify.entity.User;
 import com.onurcansever.taskify.repository.UserRepository;
+import com.onurcansever.taskify.security.JwtTokenProvider;
 import com.onurcansever.taskify.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,12 +20,14 @@ public final class AuthServiceImpl implements AuthService {
     private final AuthenticationManager authenticationManager;
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Autowired
-    public AuthServiceImpl(AuthenticationManager authenticationManager, UserRepository userRepository, PasswordEncoder passwordEncoder) {
+    public AuthServiceImpl(AuthenticationManager authenticationManager, UserRepository userRepository, PasswordEncoder passwordEncoder, JwtTokenProvider jwtTokenProvider) {
         this.authenticationManager = authenticationManager;
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     @Override
@@ -34,7 +37,9 @@ public final class AuthServiceImpl implements AuthService {
 
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        return String.format("Logged in as %s", loginDto.getUsernameOrEmail());
+        String token = this.jwtTokenProvider.generateToken(authentication);
+
+        return token;
     }
 
     @Override
