@@ -7,10 +7,11 @@ import com.onurcansever.taskify.repository.UserRepository;
 import com.onurcansever.taskify.service.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 @Service
-public final class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
@@ -29,6 +30,7 @@ public final class UserServiceImpl implements UserService {
     }
 
     @Override
+    @PreAuthorize(value = "#id == authentication.principal.userId")
     public UserDto updateUser(UserDto userDto, Long id) {
         User user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User", id));
 
@@ -42,6 +44,7 @@ public final class UserServiceImpl implements UserService {
     }
 
     @Override
+    @PreAuthorize(value = "#id == authentication.principal.userId")
     public void deleteUserById(Long id) {
         User user = this.userRepository.findById(id).orElseThrow(() -> new UserNotFoundException("User", id));
 

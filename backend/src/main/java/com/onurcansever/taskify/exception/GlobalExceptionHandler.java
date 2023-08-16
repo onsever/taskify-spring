@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.context.request.WebRequest;
 
+import java.nio.file.AccessDeniedException;
 import java.util.Date;
 
 @RestControllerAdvice
@@ -43,5 +44,16 @@ public final class GlobalExceptionHandler {
         errorResponse.setPath(request.getDescription(false));
 
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(AccessDeniedException.class)
+    public ResponseEntity<ErrorResponse> handleAccessDeniedException(AccessDeniedException exception, WebRequest request) {
+        ErrorResponse errorResponse = new ErrorResponse();
+        errorResponse.setTimestamp(new Date());
+        errorResponse.setStatusCode(HttpStatus.FORBIDDEN.value());
+        errorResponse.setMessage(exception.getMessage());
+        errorResponse.setPath(request.getDescription(false));
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.FORBIDDEN);
     }
 }
