@@ -3,6 +3,7 @@ package com.onurcansever.taskify.service.impl;
 import com.onurcansever.taskify.dto.LoginDto;
 import com.onurcansever.taskify.dto.RegisterDto;
 import com.onurcansever.taskify.entity.User;
+import com.onurcansever.taskify.exception.InvalidCredentialsException;
 import com.onurcansever.taskify.repository.UserRepository;
 import com.onurcansever.taskify.security.JwtTokenProvider;
 import com.onurcansever.taskify.service.AuthService;
@@ -46,11 +47,11 @@ public final class AuthServiceImpl implements AuthService {
     public String register(RegisterDto registerDto) {
 
         if (this.userRepository.existsByUsername(registerDto.getUsername())) {
-            return "Username is already taken!";
+            throw new InvalidCredentialsException("Username is already taken!");
         }
 
         if (this.userRepository.existsByEmail(registerDto.getEmail())) {
-            return "Email is already taken!";
+            throw new InvalidCredentialsException("Email is already taken!");
         }
 
         User user = new User();
