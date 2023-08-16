@@ -56,9 +56,9 @@ public class TaskServiceImpl implements TaskService {
         existingTask.setStatus(taskDto.getStatus());
         existingTask.setDueDate(taskDto.getDueDate());
 
-        this.taskRepository.save(existingTask);
+        Task updatedTask = this.taskRepository.save(existingTask);
 
-        return this.convertToDto(existingTask);
+        return this.convertToDto(updatedTask);
     }
 
     @Override
