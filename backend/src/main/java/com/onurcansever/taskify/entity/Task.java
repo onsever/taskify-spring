@@ -1,5 +1,6 @@
 package com.onurcansever.taskify.entity;
 
+import com.onurcansever.taskify.utils.TaskPriority;
 import com.onurcansever.taskify.utils.TaskStatus;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -30,7 +31,8 @@ public final class Task extends BaseEntity {
     private LocalDateTime dueDate;
 
     @Column(nullable = false)
-    private String priority;
+    @Enumerated(EnumType.STRING)
+    private TaskPriority priority;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
