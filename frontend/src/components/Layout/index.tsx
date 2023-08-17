@@ -1,5 +1,5 @@
 import React, { JSX } from "react";
-import NavigationBar from "../NavigationBar";
+import Header from "../Header";
 import SideBar from "../SideBar";
 import { Container, Main } from "./styles.ts";
 
@@ -10,7 +10,7 @@ interface LayoutProps {
 export default function Layout({ children }: LayoutProps): JSX.Element {
   return (
     <Container>
-      <NavigationBar />
+      <Header />
       <SideBar />
       <Main>{children}</Main>
     </Container>

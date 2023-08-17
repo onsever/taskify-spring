@@ -1,3 +1,12 @@
+import { Container, Heading, Spacer } from "./styles.ts";
+import { Board } from "../../components";
+
 export default function Dashboard() {
-  return <h1>Hello</h1>;
+  return (
+    <Container>
+      <Spacer />
+      <Heading>Dashboard</Heading>
+      <Board />
+    </Container>
+  );
 }

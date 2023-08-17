@@ -8,6 +8,6 @@ export const Container = styled.div`
 
 export const Main = styled.main`
   padding-left: 15rem;
-  padding-top: 4rem;
+  padding-top: 4.5rem;
   min-height: 100vh;
 `;
