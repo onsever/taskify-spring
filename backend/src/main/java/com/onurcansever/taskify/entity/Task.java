@@ -10,7 +10,9 @@ import lombok.Setter;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -46,5 +48,11 @@ public final class Task extends BaseEntity {
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Comment> comments = new ArrayList<>();
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @JoinTable(name = "task_tag",
+            joinColumns = @JoinColumn(name = "task_id", referencedColumnName = "taskId"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id", referencedColumnName = "tagId"))
+    private Set<Tag> tags = new HashSet<>();
 
 }
