@@ -7,5 +7,5 @@ export const Container = styled.div`
   background-color: #ffffff;
   margin-left: 15rem;
   width: calc(100% - 15rem);
-  height: 4rem;
+  height: 4.5rem;
 `;
