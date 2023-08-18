@@ -21,7 +21,12 @@ export default function SideBar() {
         {category === Category.TAGS && <div className="tag">Tags</div>}
         {filteredLinks.map((link) => {
           return (
-            <NavItem title={link.title} icon={link.icon} path={link.path} />
+            <NavItem
+              key={link.title}
+              title={link.title}
+              icon={link.icon}
+              path={link.path}
+            />
           );
         })}
       </div>
