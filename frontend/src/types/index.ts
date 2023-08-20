@@ -32,4 +32,17 @@ type RegisterCredentials = {
   password: string;
 };
 
-export type { User, Task, JWT, LoginCredentials, RegisterCredentials };
+type ErrorResponse = {
+  message: string;
+  statusCode: number;
+  path: string;
+};
+
+export type {
+  User,
+  Task,
+  JWT,
+  LoginCredentials,
+  RegisterCredentials,
+  ErrorResponse,
+};
