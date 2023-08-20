@@ -9,7 +9,6 @@ import {
 } from "./styles.ts";
 import { Category, NavLink, navLinks } from "./nav-links.tsx";
 import NavItem from "../NavItem";
-import { useCreateTaskMutation } from "../../redux/features/task/taskFeature.ts";
 import { Link } from "react-router-dom";
 
 export default function SideBar() {
@@ -23,12 +22,16 @@ export default function SideBar() {
         {category === Category.TAGS && <div className="tag">Tags</div>}
         {filteredLinks.map((link) => {
           return (
-            <NavItem
+            <Link
+              to={link.path}
               key={link.title}
-              title={link.title}
-              icon={link.icon}
-              path={link.path}
-            />
+              style={{
+                textDecoration: "none",
+                color: "inherit",
+              }}
+            >
+              <NavItem title={link.title} icon={link.icon} path={link.path} />
+            </Link>
           );
         })}
       </div>
