@@ -1,5 +1,9 @@
-import { Container } from "./styles.ts";
+import { Container, LogoutButton } from "./styles.ts";
 
 export default function Header() {
-  return <Container>Header</Container>;
+  return (
+    <Container>
+      <LogoutButton>Logout</LogoutButton>
+    </Container>
+  );
 }

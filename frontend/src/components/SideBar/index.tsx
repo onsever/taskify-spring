@@ -9,6 +9,8 @@ import {
 } from "./styles.ts";
 import { Category, NavLink, navLinks } from "./nav-links.tsx";
 import NavItem from "../NavItem";
+import { useCreateTaskMutation } from "../../redux/features/task/taskFeature.ts";
+import { Link } from "react-router-dom";
 
 export default function SideBar() {
   const renderNavItems = (category: Category) => {
@@ -35,12 +37,26 @@ export default function SideBar() {
 
   return (
     <Container>
-      <LogoContainer>
-        <LogoIcon>T</LogoIcon>
-        <Logo>Taskify</Logo>
-      </LogoContainer>
+      <Link
+        to={"/"}
+        style={{
+          textDecoration: "none",
+        }}
+      >
+        <LogoContainer>
+          <LogoIcon>T</LogoIcon>
+          <Logo>Taskify</Logo>
+        </LogoContainer>
+      </Link>
       <Nav>
-        <Button>New task</Button>
+        <Link
+          to={"/createTask"}
+          style={{
+            width: "100%",
+          }}
+        >
+          <Button>Create Task</Button>
+        </Link>
         <NavList>
           <div>
             {renderNavItems(Category.MAIN)}

@@ -1,9 +1,28 @@
 import { Container, Grid, GridHeader, GridItem, GridTitle } from "./styles.ts";
 import TaskItem from "../TaskItem";
+import { Task, TaskStatus } from "../../types";
+import React from "react";
 
-export default function Board() {
-  const grids = ["grid1", "grid2", "grid3"];
+interface BoardProps {
+  tasks: Task[];
+}
+
+export default function Board({ tasks }: BoardProps) {
   const gridTitles = ["To Do", "In Progress", "Done"];
+
+  const todoTasks: Task[] = tasks.filter(
+    (task) => task.status === TaskStatus.TODO
+  );
+  const inProgressTasks: Task[] = tasks.filter(
+    (task) => task.status === TaskStatus.IN_PROGRESS
+  );
+  const doneTasks: Task[] = tasks.filter(
+    (task) => task.status === TaskStatus.DONE
+  );
+
+  React.useEffect(() => {
+    console.log(tasks);
+  }, [tasks]);
 
   return (
     <Container>
@@ -13,16 +32,21 @@ export default function Board() {
         ))}
       </GridHeader>
       <Grid>
-        {grids.map((grid) => (
-          <GridItem key={grid}>
-            <TaskItem
-              task={{
-                id: 1,
-                title: "Task 1",
-              }}
-            />
-          </GridItem>
-        ))}
+        <GridItem>
+          {todoTasks.map((task) => (
+            <TaskItem key={task.taskId} task={task} />
+          ))}
+        </GridItem>
+        <GridItem>
+          {inProgressTasks.map((task) => (
+            <TaskItem key={task.taskId} task={task} />
+          ))}
+        </GridItem>
+        <GridItem>
+          {doneTasks.map((task) => (
+            <TaskItem key={task.taskId} task={task} />
+          ))}
+        </GridItem>
       </Grid>
     </Container>
   );

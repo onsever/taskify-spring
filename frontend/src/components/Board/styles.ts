@@ -44,5 +44,7 @@ export const GridItem = styled.div`
   height: 100%;
   overflow-y: auto;
 
+  gap: 1rem;
+
   border: 1px solid #eaeaf3;
 `;

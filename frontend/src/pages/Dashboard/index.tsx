@@ -1,21 +1,19 @@
 import { Container, Heading, Spacer } from "./styles.ts";
 import { Board } from "../../components";
-import { useGetUserByIdQuery } from "../../redux/features/user/usersFeature.ts";
-import { useSelector } from "react-redux";
-import { RootState } from "../../redux/store.ts";
+import { useGetTasksQuery } from "../../redux/features/task/taskFeature.ts";
 
 export default function Dashboard() {
-  const { data, isLoading, isError } = useGetUserByIdQuery(1);
-  const auth = useSelector((state: RootState) => state.auth);
-  console.log(data, isLoading, isError);
+  const { data, isLoading } = useGetTasksQuery();
 
-  console.log(auth);
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <Container>
-      <Spacer />
       <Heading>Dashboard</Heading>
-      <Board />
+      <Spacer />
+      {data && <Board tasks={data} />}
     </Container>
   );
 }

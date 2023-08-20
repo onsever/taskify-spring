@@ -6,12 +6,25 @@ type User = {
   email: string;
 };
 
+export enum TaskStatus {
+  TODO = "TODO",
+  IN_PROGRESS = "IN_PROGRESS",
+  DONE = "DONE",
+}
+
+export enum TaskPriority {
+  LOW = "LOW",
+  MEDIUM = "MEDIUM",
+  HIGH = "HIGH",
+}
+
 type Task = {
   taskId: number;
   title: string;
   description: string;
-  status: string;
+  status: TaskStatus;
   dueDate: string;
+  priority: TaskPriority;
 };
 
 type JWT = {
@@ -38,6 +51,13 @@ type ErrorResponse = {
   path: string;
 };
 
+type JWTReturn = {
+  userId: number;
+  sub: string;
+  iat: number;
+  exp: number;
+};
+
 export type {
   User,
   Task,
@@ -45,4 +65,5 @@ export type {
   LoginCredentials,
   RegisterCredentials,
   ErrorResponse,
+  JWTReturn,
 };
