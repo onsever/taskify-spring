@@ -5,6 +5,7 @@ import ProtectedRoute from "./ProtectedRoute";
 import CreateTask from "../pages/CreateTask";
 import EditTask from "../pages/EditTask";
 import Register from "../pages/Register";
+import Error from "../pages/Error";
 
 const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ const router = createBrowserRouter([
   {
     path: "/register",
     element: <Register />,
+  },
+  {
+    path: "*",
+    element: <Error />,
   },
 ]);
 export default router;
