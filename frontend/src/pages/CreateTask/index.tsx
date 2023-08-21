@@ -23,6 +23,22 @@ export default function CreateTask() {
 
   const navigate = useNavigate();
 
+  const convertDateToLocalDateTime = (date: string) => {
+    const dateObj = new Date(date);
+
+    const dateArray = [
+      dateObj.getFullYear(),
+      dateObj.getMonth() + 1,
+      dateObj.getDate(),
+      dateObj.getHours(),
+      dateObj.getMinutes(),
+      dateObj.getSeconds(),
+      dateObj.getMilliseconds(),
+    ];
+
+    return dateArray;
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -30,7 +46,7 @@ export default function CreateTask() {
       title: title,
       description: description,
       priority: priority.toUpperCase(),
-      dueDate: "2023-08-16T18:05:35.160458",
+      dueDate: convertDateToLocalDateTime(dueDate),
     });
 
     setTitle("");

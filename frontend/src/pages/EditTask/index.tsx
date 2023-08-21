@@ -14,6 +14,7 @@ import {
   useGetTaskByIdQuery,
   useUpdateTaskMutation,
 } from "../../redux/features/task/taskFeature.ts";
+import { format } from "date-fns";
 
 export default function EditTask() {
   const { taskId } = useParams<{ taskId: string }>();
@@ -66,7 +67,7 @@ export default function EditTask() {
       description: description,
       priority: priority.toUpperCase(),
       status: convertStatus(status),
-      dueDate: "2023-08-16T18:05:35.160458",
+      dueDate: format(new Date(dueDate), "yyyy-MM-dd'T'HH:mm:ss.SSSxxx"),
     });
 
     navigate("/");
@@ -78,7 +79,11 @@ export default function EditTask() {
       setDescription(data.description);
       setPriority(convertPriorityToText(data.priority));
       setStatus(convertStatusToText(data.status));
-      setDueDate(data.dueDate);
+      setDueDate(
+        new Date(data.dueDate[0], data.dueDate[1], data.dueDate[2])
+          .toISOString()
+          .split("T")[0]
+      );
     }
   }, [data]);
 
