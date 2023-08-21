@@ -48,3 +48,23 @@ export const GridItem = styled.div`
 
   border: 1px solid #eaeaf3;
 `;
+
+export const AddNewTaskContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  height: 100%;
+`;
+
+export const AddNewTaskIcon = styled.div`
+  cursor: pointer;
+  color: #14b2e1;
+
+  &:hover {
+    color: #14b2e1;
+    scale: 1.1;
+    transition: 0.2s;
+  }
+`;
