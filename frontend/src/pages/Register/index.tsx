@@ -7,8 +7,13 @@ import {
   CenteredWrapper,
   Title,
   Error,
+  Logo,
+  LogoContainer,
+  LogoIcon,
+  Message,
+  Label,
 } from "./styles.ts";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useRegisterMutation } from "../../redux/features/auth/authFeature.ts";
 
 export default function Register() {
@@ -38,45 +43,68 @@ export default function Register() {
     }
   };
 
-  console.log(data);
-
   return (
     <CenteredWrapper>
       <Container>
-        <Title>Register</Title>
+        <LogoContainer>
+          <LogoIcon>T</LogoIcon>
+          <Logo>Taskify</Logo>
+        </LogoContainer>
+        <Title>Sign Up</Title>
         <Form onSubmit={handleRegister}>
-          <Input
-            type="text"
-            placeholder="Enter your first name"
-            value={firstName}
-            onChange={(e) => setFirstName(e.target.value)}
-          />
-          <Input
-            type="text"
-            placeholder="Enter your last name"
-            value={lastName}
-            onChange={(e) => setLastName(e.target.value)}
-          />
-          <Input
-            type="text"
-            placeholder="Enter your username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <Input
-            type="email"
-            placeholder="Enter your email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-          <Input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Label>
+            <span>First Name</span>
+            <Input
+              type="text"
+              placeholder="Enter your first name"
+              value={firstName}
+              onChange={(e) => setFirstName(e.target.value)}
+            />
+          </Label>
+          <Label>
+            <span>Last Name</span>
+            <Input
+              type="text"
+              placeholder="Enter your last name"
+              value={lastName}
+              onChange={(e) => setLastName(e.target.value)}
+            />
+          </Label>
+          <Label>
+            <span>Username</span>
+            <Input
+              type="text"
+              placeholder="Enter your username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </Label>
+          <Label>
+            <span>Email</span>
+            <Input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+          </Label>
+          <Label>
+            <span>Password</span>
+            <Input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Label>
           <Button type="submit">Register</Button>
         </Form>
+        <Message>
+          Already have an account?{" "}
+          <Link to={"/login"}>
+            <span>Sign In</span>
+          </Link>
+        </Message>
       </Container>
     </CenteredWrapper>
   );
