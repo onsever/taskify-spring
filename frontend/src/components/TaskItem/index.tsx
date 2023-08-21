@@ -24,7 +24,7 @@ export default function TaskItem({ task }: TaskItemProps) {
           <StatusBadge priority={task.priority}>{task.priority}</StatusBadge>
           <Link to={`/tasks/${task.taskId}`}>
             <Icon>
-              <AiFillEdit size={30} />
+              <AiFillEdit size={30} color={"#562CF6"} />
             </Icon>
           </Link>
         </TaskInfoContainer>
