@@ -14,9 +14,10 @@ import { Link } from "react-router-dom";
 
 interface BoardProps {
   tasks: Task[];
+  filter?: string;
 }
 
-export default function Board({ tasks }: BoardProps) {
+export default function Board({ tasks, filter }: BoardProps) {
   const gridTitles = ["To Do", "In Progress", "Done"];
 
   const todoTasks: Task[] = tasks.filter(
@@ -44,7 +45,11 @@ export default function Board({ tasks }: BoardProps) {
       );
     }
 
-    return tasks.map((task) => <TaskItem key={task.taskId} task={task} />);
+    return filter && filter !== "All"
+      ? tasks
+          .filter((task) => task.priority === filter.toUpperCase())
+          .map((task) => <TaskItem key={task.taskId} task={task} />)
+      : tasks.map((task) => <TaskItem key={task.taskId} task={task} />);
   };
 
   return (
