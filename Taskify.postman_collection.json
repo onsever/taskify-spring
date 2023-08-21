@@ -1,0 +1,725 @@
+{
+	"info": {
+		"_postman_id": "86a0085c-de34-4af2-96b5-28aa7976f2c3",
+		"name": "Taskify",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23156919"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"usernameOrEmail\": \"onsever\",\n    \"password\": \"botbot\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Request",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"onsever\",\n    \"email\": \"onsever@icloud.com\",\n    \"firstName\": \"Onurcan\",\n    \"lastName\": \"Sever\",\n    \"password\": \"botbot\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/auth/register",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Users Resource",
+			"item": [
+				{
+					"name": "Get User By ID",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete User By ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIwOTgwNCwiZXhwIjoxNjkyODE0NjA0fQ.NsIIET8ftVPF-wlJ4X_cBqwVbuRH-4uTVezUafx7ofYwMHe7dNUStnNf8Yr2d9mY",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"onsever\",\n    \"email\": \"onsever@icloud.com\",\n    \"firstName\": \"Onur Can\",\n    \"lastName\": \"Sever\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"5"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks Resource",
+			"item": [
+				{
+					"name": "Create a Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Test Task 1\",\n    \"description\": \"Test description of the task\",\n    \"dueDate\": \"2023-08-16T18:05:35.160458\",\n    \"priority\": \"HIGH\",\n    \"status\": \"TODO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Tasks (Authenticated User)",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjEzLCJzdWIiOiJvbnVyY2FuQGdtYWlsLmNvbSIsImlhdCI6MTY5MjU4NTI0MiwiZXhwIjoxNjkzMTkwMDQyfQ.tcw5xNNXyidZzNUtF-7c9ynIyIqUiQtZ8ryVGtjyrrvV4fpaHeQyV0iBxbuCJQxk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/all/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"all",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Task by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"This is an updated Task\",\n    \"description\": \"This is an updated description for the task\",\n    \"dueDate\": \"2023-08-16T18:05:35.160458\",\n    \"priority\": \"LOW\",\n    \"status\": \"IN_PROGRESS\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Task by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Comments Resource",
+			"item": [
+				{
+					"name": "Create a Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"This a comment 2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Comments by Task ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1/comments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Comment by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1/comments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Comment by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"content\": \"This is an updated comment!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1/comments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Comment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1/comments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1",
+								"comments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tags Resource",
+			"item": [
+				{
+					"name": "Create a Tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tagName\": \"Sports\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1/tags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Tags by Task ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1/tags",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1",
+								"tags"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a Tag by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1/tags/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1",
+								"tags",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update a Tag by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"tagName\": \"Social\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1/tags/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1",
+								"tags",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete a Tag",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzM4NCJ9.eyJ1c2VySWQiOjUsInN1YiI6InlvZ2VzaEB0YWtlby5haSIsImlhdCI6MTY5MjIyMzQ3OCwiZXhwIjoxNjkyODI4Mjc4fQ.7KR2L380HzkboI5zYVQzMxIHNMDxvSFuU3j-geeYSteF6-SsWfwfzSziXVW6NHUB",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/tasks/1/tags/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"tasks",
+								"1",
+								"tags",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
