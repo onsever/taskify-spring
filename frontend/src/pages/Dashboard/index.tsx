@@ -1,10 +1,18 @@
 import { Container, Heading, Spacer } from "./styles.ts";
 import { Board } from "../../components";
-import { useGetTasksQuery } from "../../redux/features/task/taskFeature.ts";
+import { useGetAllTasksByUserIdQuery } from "../../redux/features/task/taskFeature.ts";
 import React from "react";
+import jwtDecode from "jwt-decode";
+import { JWTReturn } from "../../types";
 
 export default function Dashboard() {
-  const { data, isLoading, refetch } = useGetTasksQuery();
+  const accessToken = localStorage.getItem("accessToken");
+  const decodedToken: JWTReturn = jwtDecode(accessToken!);
+  const userId = decodedToken.userId;
+
+  const { data, isLoading, refetch } = useGetAllTasksByUserIdQuery(userId, {
+    refetchOnMountOrArgChange: true,
+  });
 
   React.useEffect(() => {
     refetch();

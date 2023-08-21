@@ -82,6 +82,13 @@ public class TaskServiceImpl implements TaskService {
         return tasks.stream().map(this::convertToDto).toList();
     }
 
+    @Override
+    public List<TaskDto> getAllTasksByUserId(Long userId) {
+        List<Task> tasks = this.taskRepository.findTasksByUserId(userId);
+
+        return tasks.stream().map(this::convertToDto).toList();
+    }
+
     private TaskDto convertToDto(Object object) {
         return modelMapper.map(object, TaskDto.class);
     }

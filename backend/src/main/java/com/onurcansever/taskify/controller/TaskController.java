@@ -30,6 +30,11 @@ public class TaskController {
         return new ResponseEntity<>(this.taskService.getAllTasks(), HttpStatus.OK);
     }
 
+    @GetMapping(value = "/all/{userId}")
+    public ResponseEntity<List<TaskDto>> getAllTasksByUserId(@PathVariable Long userId) {
+        return new ResponseEntity<>(this.taskService.getAllTasksByUserId(userId), HttpStatus.OK);
+    }
+
     @PostMapping(value = {"", "/"})
     public ResponseEntity<TaskDto> createTask(@RequestBody TaskDto taskDto) {
         return new ResponseEntity<>(this.taskService.createTask(taskDto), HttpStatus.CREATED);
