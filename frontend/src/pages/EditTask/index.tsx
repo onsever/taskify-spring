@@ -13,6 +13,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import {
   useGetTaskByIdQuery,
   useUpdateTaskMutation,
+  useDeleteTaskMutation,
 } from "../../redux/features/task/taskFeature.ts";
 import { format } from "date-fns";
 
@@ -20,6 +21,8 @@ export default function EditTask() {
   const { taskId } = useParams<{ taskId: string }>();
   const { data, isLoading, error } = useGetTaskByIdQuery(taskId);
   const [updateTask] = useUpdateTaskMutation();
+  const [deleteTask, { isSuccess: isDeletingSuccess }] =
+    useDeleteTaskMutation();
   const navigate = useNavigate();
 
   const [title, setTitle] = React.useState("");
@@ -151,6 +154,20 @@ export default function EditTask() {
           />
         </div>
         <Button type="submit">Submit</Button>
+        <Button
+          style={{
+            marginTop: "10px",
+          }}
+          onClick={() => {
+            deleteTask(taskId);
+
+            if (isDeletingSuccess) {
+              navigate("/");
+            }
+          }}
+        >
+          Delete
+        </Button>
       </Form>
     </Container>
   );
