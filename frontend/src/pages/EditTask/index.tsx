@@ -47,6 +47,16 @@ export default function EditTask() {
     }
   };
 
+  const convertPriorityToText = (priority: string) => {
+    if (priority === "LOW") {
+      return "Low";
+    } else if (priority === "MEDIUM") {
+      return "Medium";
+    } else {
+      return "High";
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -66,7 +76,7 @@ export default function EditTask() {
     if (data) {
       setTitle(data.title);
       setDescription(data.description);
-      setPriority(data.priority);
+      setPriority(convertPriorityToText(data.priority));
       setStatus(convertStatusToText(data.status));
       setDueDate(data.dueDate);
     }
