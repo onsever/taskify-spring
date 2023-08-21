@@ -17,6 +17,27 @@ export default function Dashboard() {
     refetchOnMountOrArgChange: true,
   });
 
+  const convertBackToDate = (date: number[]) => {
+    const dateObj = new Date(
+      date[0],
+      date[1] - 1,
+      date[2],
+      date[3],
+      date[4],
+      date[5],
+      date[6]
+    );
+
+    return dateObj;
+  };
+
+  const mappedData = data?.map((task) => ({
+    ...task,
+    dueDate: convertBackToDate(task.dueDate),
+  }));
+
+  console.log(mappedData);
+
   const onFilter = (status: string) => {
     setFilter(status);
   };
@@ -34,7 +55,7 @@ export default function Dashboard() {
       <Heading>Dashboard</Heading>
       <Spacer />
       <FilterTabs onValueChange={onFilter} />
-      {data && <Board tasks={data} filter={filter} />}
+      {data && <Board tasks={mappedData} filter={filter} />}
     </Container>
   );
 }
