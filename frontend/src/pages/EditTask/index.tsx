@@ -9,7 +9,7 @@ import {
   TextArea,
   DateInput,
 } from "./styles.ts";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import {
   useGetTaskByIdQuery,
   useUpdateTaskMutation,
@@ -19,6 +19,7 @@ export default function EditTask() {
   const { taskId } = useParams<{ taskId: string }>();
   const { data, isLoading, error } = useGetTaskByIdQuery(taskId);
   const [updateTask] = useUpdateTaskMutation();
+  const navigate = useNavigate();
 
   const [title, setTitle] = React.useState("");
   const [description, setDescription] = React.useState("");
@@ -36,10 +37,20 @@ export default function EditTask() {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const convertStatusToText = (status: string) => {
+    if (status === "TODO") {
+      return "Todo";
+    } else if (status === "IN_PROGRESS") {
+      return "In Progress";
+    } else {
+      return "Done";
+    }
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    updateTask({
+    await updateTask({
       taskId: taskId,
       title: title,
       description: description,
@@ -47,6 +58,8 @@ export default function EditTask() {
       status: convertStatus(status),
       dueDate: "2023-08-16T18:05:35.160458",
     });
+
+    navigate("/");
   };
 
   React.useEffect(() => {
@@ -54,10 +67,12 @@ export default function EditTask() {
       setTitle(data.title);
       setDescription(data.description);
       setPriority(data.priority);
-      setStatus(data.status);
+      setStatus(convertStatusToText(data.status));
       setDueDate(data.dueDate);
     }
   }, [data]);
+
+  console.log(data);
 
   if (error) {
     console.log(error);
