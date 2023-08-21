@@ -11,6 +11,7 @@ import {
   DateInput,
 } from "./styles.ts";
 import { useCreateTaskMutation } from "../../redux/features/task/taskFeature.ts";
+import { useNavigate } from "react-router-dom";
 
 export default function CreateTask() {
   const [title, setTitle] = React.useState("");
@@ -20,10 +21,12 @@ export default function CreateTask() {
 
   const [createTask] = useCreateTaskMutation();
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    createTask({
+    await createTask({
       title: title,
       description: description,
       priority: priority.toUpperCase(),
@@ -34,6 +37,8 @@ export default function CreateTask() {
     setDescription("");
     setPriority("Low");
     setDueDate("");
+
+    navigate("/");
   };
 
   return (
