@@ -39,6 +39,7 @@ export const Input = styled.input`
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 1rem;
+  width: 100%;
 `;
 
 export const Button = styled.button`
@@ -115,5 +116,20 @@ export const Message = styled.div`
     font-weight: 500;
     cursor: pointer;
     margin-left: 0.5rem;
+  }
+`;
+
+export const Label = styled.label`
+  font-size: 1rem;
+  font-weight: 500;
+  color: #000000;
+  margin-bottom: 0.5rem;
+  width: 100%;
+
+  & span {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 400;
+    margin-bottom: 0.2rem;
   }
 `;

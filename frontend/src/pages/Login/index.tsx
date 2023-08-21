@@ -10,6 +10,7 @@ import {
   LogoContainer,
   LogoIcon,
   Message,
+  Label,
 } from "./styles.ts";
 import React from "react";
 import { useLoginMutation } from "../../redux/features/auth/authFeature.ts";
@@ -59,18 +60,24 @@ export default function Login() {
         {isLoading && <p>Loading...</p>}
         {error && <Error>{error.data.message}</Error>}
         <Form onSubmit={handleSubmit}>
-          <Input
-            type="text"
-            placeholder="Enter your username"
-            value={usernameOrEmail}
-            onChange={(e) => setUsernameOrEmail(e.target.value)}
-          />
-          <Input
-            type="password"
-            placeholder="Enter your password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
+          <Label>
+            <span>Username or Email</span>
+            <Input
+              type="text"
+              placeholder="Enter your username"
+              value={usernameOrEmail}
+              onChange={(e) => setUsernameOrEmail(e.target.value)}
+            />
+          </Label>
+          <Label>
+            <span>Password</span>
+            <Input
+              type="password"
+              placeholder="Enter your password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </Label>
           <Button type="submit">Login</Button>
         </Form>
         <Message>
