@@ -6,6 +6,7 @@ import CreateTask from "../pages/CreateTask";
 import EditTask from "../pages/EditTask";
 import Register from "../pages/Register";
 import Error from "../pages/Error";
+import Settings from "../pages/Settings";
 
 const router = createBrowserRouter([
   {
@@ -36,6 +37,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedRoute>
             <EditTask />
+          </ProtectedRoute>
+        ),
+      },
+      {
+        path: "/settings",
+        element: (
+          <ProtectedRoute>
+            <Settings />
           </ProtectedRoute>
         ),
       },
