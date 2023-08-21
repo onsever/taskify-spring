@@ -56,6 +56,7 @@ export const AddNewTaskContainer = styled.div`
   flex-direction: column;
   gap: 1rem;
   height: 100%;
+  text-align: center;
 `;
 
 export const AddNewTaskIcon = styled.div`

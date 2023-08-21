@@ -36,8 +36,6 @@ export default function Dashboard() {
     dueDate: convertBackToDate(task.dueDate),
   }));
 
-  console.log(mappedData);
-
   const onFilter = (status: string) => {
     setFilter(status);
   };
