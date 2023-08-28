@@ -1,4 +1,4 @@
-# Taskify
+# Taskify | Task Management Application
 Taskify is a simple task management system that uses React as the front-end technology and Spring as the back-end technology.
 
 ## Requirements and Architecture
